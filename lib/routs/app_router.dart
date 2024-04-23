@@ -14,8 +14,8 @@ class AppRouter {
     switch (settings.name) {
       case RouteName.HOME:
         return MaterialPageRoute(
-          builder: ((context) => BlocProvider(
-                create: (_) => locator<HomeCubit>(),
+          builder: ((context) => BlocProvider.value(
+                value: locator<HomeCubit>()..getGallery(),
                 child: const HomeScreen(),
               )),
         );

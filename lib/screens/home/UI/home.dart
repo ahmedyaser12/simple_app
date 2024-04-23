@@ -1,11 +1,13 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simply_app/core/utils/colors.dart';
 import 'package:simply_app/core/utils/common_functions.dart';
 import 'package:simply_app/screens/home/UI/widget/uploade_list.dart';
 import 'package:simply_app/screens/home/UI/widget/uploade_logout_buttons.dart';
+import 'package:simply_app/screens/home/logic/home_cubit.dart';
+import 'package:simply_app/services/services_locator.dart';
 
 import '../../../core/utils/assets.dart';
 import '../../../core/utils/styles.dart';
@@ -54,7 +56,19 @@ class HomeScreen extends StatelessWidget {
                 heightSpace(30),
                 const UploadAndLogoutButtons(),
                 heightSpace(30),
-                const Expanded(child: UploadPhotos()),
+                Expanded(child: BlocBuilder<HomeCubit, HomeState>(
+                  builder: (context, state) {
+                    if (state is GalleryLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    if (state is GallerySuccess) {
+                      return DisplayGallery(
+                        model: state.galleryModel,
+                      );
+                    }
+                    return Container();
+                  },
+                )),
               ],
             )
           ],
