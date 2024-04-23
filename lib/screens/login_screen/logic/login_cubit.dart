@@ -24,7 +24,6 @@ class LoginCubit extends Cubit<LoginState> {
       if (response.status == Status.SUCCESS) {
         CacheHelper().saveData(key: ApiKey.token, value: response.data!.token);
         CacheHelper().saveData(key: 'login', value: true);
-        CacheHelper().saveData(key: ApiKey.id, value: response.data!.user!.id);
 
         emit(LoginSuccess());
       } else {

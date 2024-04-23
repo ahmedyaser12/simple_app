@@ -79,7 +79,8 @@ void showAcceptDialog(BuildContext context, String message) {
       ),
       content: Text(
         message,
-        style: TextStyles.font16PrimarySemi.copyWith(color: AppColors.secondary),
+        style:
+            TextStyles.font16PrimarySemi.copyWith(color: AppColors.blackColor),
         textAlign: TextAlign.center,
       ),
       actions: [
