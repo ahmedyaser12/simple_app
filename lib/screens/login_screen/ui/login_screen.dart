@@ -52,8 +52,8 @@ class LoginScreen extends StatelessWidget {
                                 showAlertDialog(context, state.error!);
                               }
                               if (state is LoginSuccess) {
-                                context.navigateTo(RouteName.HOME);
                                 showAcceptDialog(context, 'Login Successful');
+                                context.navigateTo(RouteName.HOME);
                               }
                             },
                             builder: (context, state) {

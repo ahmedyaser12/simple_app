@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:simply_app/screens/home/data/get_gallery/gallery_model.dart';
 
-class UploadPhotos extends StatelessWidget {
-  const UploadPhotos({super.key});
+class DisplayGallery extends StatelessWidget {
+  final GalleryModel model;
+
+  const DisplayGallery({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -19,33 +22,25 @@ class UploadPhotos extends StatelessWidget {
         mainAxisSpacing: .06,
         crossAxisSpacing: .7,
       ),
-      itemCount: 30,
+      itemCount: model.data!.images!.length,
       itemBuilder: (context, index) {
-        return Column(
-          children: [
-            buildCard(),
-          ],
+        return SizedBox(
+          height: 100,
+          width: 100,
+          child: Card(
+            //margin:   EdgeInsets.all(50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            elevation: 5,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child:
+                  Image.network(model.data!.images![index], fit: BoxFit.fill),
+            ),
+          ),
         );
       },
     );
   }
-}
-
-buildCard() {
-  return SizedBox(
-    height: 100,
-    width: 100,
-    child: Card(
-      //margin:   EdgeInsets.all(50),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      elevation: 5,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
-        child:
-            Image.asset('assets/images/2.0x/background.png', fit: BoxFit.fill),
-      ),
-    ),
-  );
 }
