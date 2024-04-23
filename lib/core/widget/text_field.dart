@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../utils/colors.dart';
-import '../utils/common_functions.dart';
 import '../utils/styles.dart';
 
 class FormTextFieldItem extends StatelessWidget {
@@ -26,7 +24,7 @@ class FormTextFieldItem extends StatelessWidget {
     this.controller,
     this.initialValue,
     this.title,
-    this.name,
+    this.name = '',
     this.hint,
     this.enabled,
     this.lines,
@@ -44,18 +42,21 @@ class FormTextFieldItem extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 5.0),
-          child: Text(
-            name!,
-            style: TextStyles.font15BlackMedium,
-          ),
+          child: name!.isEmpty
+              ? Text(
+                  name!,
+                  style: TextStyles.font15BlackMedium,
+                )
+              : null,
         ),
-        if (title != null) heightSpace(8),
+        //if (title != null) heightSpace(8),
         Container(
+          height: 45,
           // padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColors.lightGery),
-            color: AppColors.lightGery,
+            borderRadius: BorderRadius.circular(25),
+            //border: Border.all(color: AppColors.lightGery),
+            color: AppColors.backgroundColorTextField,
           ),
           width: double.infinity,
           child: Center(
@@ -70,37 +71,39 @@ class FormTextFieldItem extends StatelessWidget {
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: AppColors.primary,
-                    width: 1.3,
+                    color: AppColors.backgroundColorTextField,
                   ),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(25),
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.gery50,
-                    width: 1.3,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
+                // enabledBorder: OutlineInputBorder(
+                  // borderSide: BorderSide(
+                  //   color: AppColors.lightGery,
+                  //   width: 1.3,
+                  // ),
+                //   borderRadius: BorderRadius.circular(25),
+                // ),
                 errorBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: AppColors.redColor,
                     width: 1.3,
                   ),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(25),
                 ),
                 focusedErrorBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: AppColors.redColor,
                     width: 1.3,
                   ),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(25),
                 ),
-                //border: InputBorder.none,
+                border: InputBorder.none,
                 hintText: hint ?? title ?? "hint",
+                hintStyle: TextStyle(
+                  color: AppColors.lightGery,
+                ),
                 suffixIcon: suffixIcon,
                 counterText: '',
-                //contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 12),
                 isDense: true,
               ),
               maxLength: lines,
