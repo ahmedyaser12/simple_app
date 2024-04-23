@@ -41,7 +41,7 @@ class LoginView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 175, bottom: 43),
+                  padding: const EdgeInsets.only(top: 218, bottom: 43),
                   child: Text(
                     'My \nGellary',
                     style: TextStyles.font50GreyBold,
