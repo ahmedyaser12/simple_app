@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:simply_app/screens/login_screen/logic/login_cubit.dart';
 
 import 'api_services/api_service.dart';
 
@@ -10,8 +11,5 @@ Future setupLocator() async {
     () => ApiService(),
   );
   locator.registerLazySingleton(() => Dio());
-  // locator.registerFactoryParam<DioConsumer, String, String>(
-  //   (header, baseUrl) =>
-  //       DioConsumer(dio: locator(), header, null, baseUrl: baseUrl),
-  // );
+  locator.registerLazySingleton<LoginCubit>(() => LoginCubit());
 }
