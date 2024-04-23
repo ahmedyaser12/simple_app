@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simply_app/routs/app_router.dart';
 import 'package:simply_app/routs/routs_names.dart';
-import 'package:simply_app/screens/login_screen/ui/login_screen.dart';
 import 'package:simply_app/services/observer.dart';
 import 'package:simply_app/services/services_locator.dart';
 
@@ -12,8 +11,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await setupLocator();
-  CacheHelper().init();
-
+  await CacheHelper().init();
+print(CacheHelper().getData(key: 'login'));
   runApp(const MyApp());
 }
 
@@ -30,7 +29,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: RouteName.LOGIN,
+      initialRoute: CacheHelper().getData(key: 'login') == true
+          ? RouteName.HOME
+          : RouteName.LOGIN,
       onGenerateRoute: AppRouter.generateRoute,
     );
   }
