@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simply_app/routs/app_router.dart';
+import 'package:simply_app/routs/routs_names.dart';
 import 'package:simply_app/screens/login_screen/ui/login_screen.dart';
+import 'package:simply_app/services/observer.dart';
 import 'package:simply_app/services/services_locator.dart';
+
+import 'core/helper/cache_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   await setupLocator();
+  CacheHelper().init();
+
   runApp(const MyApp());
 }
 
@@ -20,7 +29,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoginScreen(),
+      debugShowCheckedModeBanner: false,
+      initialRoute: RouteName.LOGIN,
+      onGenerateRoute: AppRouter.generateRoute,
     );
   }
 }

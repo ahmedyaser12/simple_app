@@ -1,5 +1,6 @@
-class EndPoints {
+class ApiConstants {
   static const baseUrl = "https://flutter.prominaagency.com/api/";
+  static const signIn = "auth/login";
 }
 
 class ApiKey {
@@ -8,6 +9,6 @@ class ApiKey {
   static String errorMessage = "errorMessage";
   static String password = "password";
   static String token = "token";
-
+  static String id = "id";
   static String profilePic = "profilePic";
 }
