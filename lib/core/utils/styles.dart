@@ -4,11 +4,30 @@ import 'colors.dart';
 
 class TextStyles {
   static TextStyle font50GreyBold = TextStyle(
-textBaseline:   TextBaseline.alphabetic,
     fontSize: 50,
     height: 1,
     fontWeight: FontWeight.bold,
     fontFamily: 'Segoe UI',
+    color: AppColors.greyColor,
+  ); static TextStyle font27GreyBold = TextStyle(
+    fontSize: 27,
+    height: 1,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Segoe UI',
+    color: AppColors.greyColor,
+  );
+  static TextStyle font32greySemiBold = TextStyle(
+    fontSize: 32,
+    height: 1,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Baloo Thambi 2',
+    color: AppColors.greyColor,
+  );
+  static TextStyle font20greySemiBold = TextStyle(
+    fontSize: 20,
+    height: 1,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'Baloo Thambi 2',
     color: AppColors.greyColor,
   );
   static TextStyle font30GreyBold = TextStyle(

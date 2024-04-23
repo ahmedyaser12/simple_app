@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simply_app/routs/routs_names.dart';
 import 'package:simply_app/screens/home/UI/home.dart';
+import 'package:simply_app/screens/home/logic/home_cubit.dart';
 import 'package:simply_app/screens/login_screen/ui/login_screen.dart';
+import 'package:simply_app/services/services_locator.dart';
+
+import '../screens/login_screen/logic/login_cubit.dart';
 
 //
 class AppRouter {
@@ -9,11 +14,16 @@ class AppRouter {
     switch (settings.name) {
       case RouteName.HOME:
         return MaterialPageRoute(
-          builder: ((context) => const Home()),
+          builder: ((context) => BlocProvider(
+                create: (_) => locator<HomeCubit>(),
+                child: const HomeScreen(),
+              )),
         );
-    case RouteName.LOGIN:
+      case RouteName.LOGIN:
         return MaterialPageRoute(
-          builder: ((context) => const LoginScreen()),
+          builder: ((context) => BlocProvider(
+              create: (_) => locator<LoginCubit>(),
+              child: const LoginScreen())),
         );
 
       default:

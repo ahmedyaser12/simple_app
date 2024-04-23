@@ -9,24 +9,11 @@ import 'package:simply_app/core/widget/app_buttons.dart';
 import 'package:simply_app/routs/routs_names.dart';
 import 'package:simply_app/screens/login_screen/logic/login_cubit.dart';
 import 'package:simply_app/screens/login_screen/ui/widget/email_and_password.dart';
-import 'package:simply_app/services/services_locator.dart';
 
 import '../../../core/utils/assets.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => locator<LoginCubit>(),
-      child: const LoginView(),
-    );
-  }
-}
-
-class LoginView extends StatelessWidget {
-  const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
