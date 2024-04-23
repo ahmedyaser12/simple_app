@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simply_app/core/utils/colors.dart';
 import 'package:simply_app/core/utils/extintions.dart';
 import 'package:simply_app/core/utils/styles.dart';
 
@@ -78,7 +79,7 @@ void showAcceptDialog(BuildContext context, String message) {
       ),
       content: Text(
         message,
-        style: TextStyles.font16PrimarySemi,
+        style: TextStyles.font16PrimarySemi.copyWith(color: AppColors.secondary),
         textAlign: TextAlign.center,
       ),
       actions: [

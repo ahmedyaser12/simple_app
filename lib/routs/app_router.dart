@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simply_app/routs/routs_names.dart';
+import 'package:simply_app/screens/home/UI/home.dart';
+import 'package:simply_app/screens/login_screen/ui/login_screen.dart';
 
 //
 class AppRouter {
@@ -7,11 +9,11 @@ class AppRouter {
     switch (settings.name) {
       case RouteName.HOME:
         return MaterialPageRoute(
-          builder: ((context) => const Scaffold(
-                body: Center(
-                  child: Text('Home'),
-                ),
-              )),
+          builder: ((context) => const Home()),
+        );
+    case RouteName.LOGIN:
+        return MaterialPageRoute(
+          builder: ((context) => const LoginScreen()),
         );
 
       default:

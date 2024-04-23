@@ -29,7 +29,7 @@ class EmailAndPasswordField extends StatelessWidget {
               }
             },
           ),
-          heightSpace(20),
+          heightSpace(15),
           FormTextFieldItem(
             validator: (value) {
               if (value == null || value.isEmpty) {
