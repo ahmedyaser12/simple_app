@@ -3,10 +3,19 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 class TextStyles {
-  static TextStyle font24BlackBold = TextStyle(
-    fontSize: 24,
+  static TextStyle font50GreyBold = TextStyle(
+textBaseline:   TextBaseline.alphabetic,
+    fontSize: 50,
+    height: 1,
     fontWeight: FontWeight.bold,
-    color: AppColors.blackColor,
+    fontFamily: 'Segoe UI',
+    color: AppColors.greyColor,
+  );
+  static TextStyle font30GreyBold = TextStyle(
+    fontSize: 30,
+    fontFamily: 'Segoe UI',
+    fontWeight: FontWeight.bold,
+    color: AppColors.greyColor,
   );
   static TextStyle font16grey = TextStyle(
     fontSize: 16,
