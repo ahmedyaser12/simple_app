@@ -1,6 +1,8 @@
 class ApiConstants {
   static const baseUrl = "https://flutter.prominaagency.com/api/";
   static const signIn = "auth/login";
+  static const upload = "upload";
+  static const getGallery = "my-gallery";
 }
 
 class ApiKey {
@@ -10,5 +12,5 @@ class ApiKey {
   static String password = "password";
   static String token = "token";
   static String id = "id";
-  static String profilePic = "profilePic";
+  static String profilePic = "img";
 }
