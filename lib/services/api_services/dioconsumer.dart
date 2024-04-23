@@ -4,21 +4,16 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '../../core/errors/exceptions.dart';
 import 'api_consumer.dart';
 import 'api_interceptors.dart';
+import 'end_points.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
-  final String baseUrl;
-  final String? header;
-
-  final String? headerValue;
 
   DioConsumer({
-    this.header,
-    this.headerValue,
+
     required this.dio,
-    required this.baseUrl,
   }) {
-    dio.options.baseUrl = (baseUrl);
+    dio.options.baseUrl = (ApiConstants.baseUrl);
     dio.interceptors.add(ApiInterceptor());
     dio.interceptors.add(PrettyDioLogger(
       request: true,
@@ -30,7 +25,6 @@ class DioConsumer extends ApiConsumer {
       compact: true,
       maxWidth: 90,
     ));
-    dio.options.headers[headerValue ?? ''] = header ?? '';
   }
 
   @override

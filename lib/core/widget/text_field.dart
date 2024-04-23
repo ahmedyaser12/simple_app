@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../utils/colors.dart';
+import '../utils/common_functions.dart';
 import '../utils/styles.dart';
 
 class FormTextFieldItem extends StatelessWidget {
@@ -49,68 +50,60 @@ class FormTextFieldItem extends StatelessWidget {
                 )
               : null,
         ),
-        //if (title != null) heightSpace(8),
-        Container(
-          height: 45,
-          // padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
-            //border: Border.all(color: AppColors.lightGery),
-            color: AppColors.backgroundColorTextField,
-          ),
-          width: double.infinity,
-          child: Center(
-            child: TextFormField(
-              validator: (value) {
-                return validator!(value!);
-              },
-              initialValue: initialValue,
-              controller: controller,
-              keyboardType: keyboardType,
-              //style: TextStyles.font14PrimarySemi,
-              decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.backgroundColorTextField,
-                  ),
-                  borderRadius: BorderRadius.circular(25),
+       // if (title != null) heightSpace(8),
+        Center(
+          child: TextFormField(
+            validator: (value) {
+              return validator!(value!);
+            },
+            initialValue: initialValue,
+            controller: controller,
+            keyboardType: keyboardType,
+            //style: TextStyles.font14PrimarySemi,
+            decoration: InputDecoration(
+              filled: true,  // Enable filling the box
+              fillColor: AppColors.backgroundColorTextField,
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColors.backgroundColorTextField,
                 ),
-                // enabledBorder: OutlineInputBorder(
-                  // borderSide: BorderSide(
-                  //   color: AppColors.lightGery,
-                  //   width: 1.3,
-                  // ),
-                //   borderRadius: BorderRadius.circular(25),
-                // ),
-                errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.redColor,
-                    width: 1.3,
-                  ),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppColors.redColor,
-                    width: 1.3,
-                  ),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                border: InputBorder.none,
-                hintText: hint ?? title ?? "hint",
-                hintStyle: TextStyle(
-                  color: AppColors.lightGery,
-                ),
-                suffixIcon: suffixIcon,
-                counterText: '',
-                contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 12),
-                isDense: true,
+                borderRadius: BorderRadius.circular(25),
               ),
-              maxLength: lines,
-              maxLengthEnforcement: MaxLengthEnforcement.enforced,
-              enabled: enabled,
-              obscureText: isPassword == true ? isSecure! : false,
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColors.backgroundColorTextField,
+                  width: 1.3,
+                ),
+                borderRadius: BorderRadius.circular(25),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColors.redColor,
+                  width: 1.3,
+                ),
+                borderRadius: BorderRadius.circular(25),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColors.redColor,
+                  width: 1.3,
+                ),
+                borderRadius: BorderRadius.circular(25),
+              ),
+              border: InputBorder.none,
+              hintText: hint ?? title ?? "hint",
+              hintStyle: TextStyle(
+                color: AppColors.lightGery,
+              ),
+              suffixIcon: suffixIcon,
+              counterText: '',
+              contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 12),
+              isDense: true,
             ),
+            maxLength: lines,
+            maxLengthEnforcement: MaxLengthEnforcement.enforced,
+            enabled: enabled,
+            obscureText: isPassword == true ? isSecure! : false,
           ),
         ),
       ],
