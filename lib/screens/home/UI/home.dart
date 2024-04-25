@@ -7,7 +7,6 @@ import 'package:simply_app/core/utils/common_functions.dart';
 import 'package:simply_app/screens/home/UI/widget/uploade_list.dart';
 import 'package:simply_app/screens/home/UI/widget/uploade_logout_buttons.dart';
 import 'package:simply_app/screens/home/logic/home_cubit.dart';
-import 'package:simply_app/services/services_locator.dart';
 
 import '../../../core/utils/assets.dart';
 import '../../../core/utils/styles.dart';
@@ -38,8 +37,8 @@ class HomeScreen extends StatelessWidget {
               right: 19, // example position
               child: CircleAvatar(
                 radius: 25,
-                backgroundImage: NetworkImage(
-                    'https://i.pravatar.cc/300'), // replace with your image URL
+                backgroundImage: AssetImage(
+                    'assets/svgs/jpj1.jpg'), // replace with your image URL
               ),
             ),
             Column(
