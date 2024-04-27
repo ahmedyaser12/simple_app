@@ -55,18 +55,9 @@ class HomeScreen extends StatelessWidget {
                 heightSpace(30),
                 const UploadAndLogoutButtons(),
                 heightSpace(30),
-                Expanded(child: BlocBuilder<HomeCubit, HomeState>(
-                  builder: (context, state) {
-                    if (state is GalleryLoading) {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                    if (state is GallerySuccess) {
-                      return DisplayGallery(
-                        model: state.galleryModel,
-                      );
-                    }
-                    return Container();
-                  },
+                Expanded(
+                    child: DisplayGallery(
+                  model: context.read<HomeCubit>().images,
                 )),
               ],
             )

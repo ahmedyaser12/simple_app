@@ -19,6 +19,7 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   XFile? uploadImage;
+  List<String> images = [];
 
   void uploadProfilePic(XFile? image) {
     uploadImage = image;
@@ -29,6 +30,8 @@ class HomeCubit extends Cubit<HomeState> {
     emit(GalleryLoading());
     var response = await apiService.getGallery();
     if (response.status == Status.SUCCESS) {
+      images = response.data!.data!.images!;
+      print("this is the gallery${response.data!.message}");
       emit(GallerySuccess(response.data!));
     } else {
       emit(FailureRequest(response.errorMessage!));

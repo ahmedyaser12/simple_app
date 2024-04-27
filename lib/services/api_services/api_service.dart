@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:simply_app/screens/home/data/get_gallery/gallery_model.dart';
@@ -6,6 +8,7 @@ import 'package:simply_app/screens/login_screen/data/model/login_model.dart';
 import 'package:simply_app/services/api_services/api_consumer.dart';
 
 import '../../core/errors/exceptions.dart';
+import '../../core/helper/cache_helper.dart';
 import '../../core/utils/resources.dart';
 import '../../core/utils/status.dart';
 import 'end_points.dart';
@@ -59,7 +62,12 @@ class ApiService {
   Future<Resource<GalleryModel>> getGallery() async {
     try {
       var response = await api.get(ApiConstants.getGallery);
-      return Resource(Status.SUCCESS, data: GalleryModel.fromJson(response));
+      String gallery = jsonEncode(response);
+      CacheHelper().saveData(key: 'gallery', value: gallery);
+      String mapString = CacheHelper().getData(key: 'gallery');
+      Map<String, dynamic> yourMap = jsonDecode(mapString);
+      print(yourMap);
+      return Resource(Status.SUCCESS, data: GalleryModel.fromJson(yourMap));
     } on ServerExceptions catch (exception) {
       return Resource(Status.ERROR,
           errorMessage: exception.errModel.errorMessage);

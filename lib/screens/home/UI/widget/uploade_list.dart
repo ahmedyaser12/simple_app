@@ -1,8 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:simply_app/screens/home/data/get_gallery/gallery_model.dart';
 
 class DisplayGallery extends StatelessWidget {
-  final GalleryModel model;
+  final List<String> model;
 
   const DisplayGallery({super.key, required this.model});
 
@@ -22,7 +22,7 @@ class DisplayGallery extends StatelessWidget {
         mainAxisSpacing: .06,
         crossAxisSpacing: .7,
       ),
-      itemCount: model.data!.images!.length,
+      itemCount: model.length,
       itemBuilder: (context, index) {
         return SizedBox(
           height: 100,
@@ -33,10 +33,22 @@ class DisplayGallery extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
             elevation: 5,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child:
-                  Image.network(model.data!.images![index], fit: BoxFit.fill),
+            child: CachedNetworkImage(
+              imageBuilder: (
+                context,
+                ImageProvider imageProvider,
+              ) {
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image(image: imageProvider, fit: BoxFit.fill),
+                );
+              },
+              imageUrl: model[index],
+              // URL of the image
+              placeholder: (context, url) =>
+                  const Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              fit: BoxFit.fill,
             ),
           ),
         );
