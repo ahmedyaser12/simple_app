@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(30.0),
                   child: Text(
-                    'Welcome\nMina',
+                    'Welcome\nAhmed',
                     style: TextStyles.font32greySemiBold,
                     textAlign: TextAlign.start,
                   ),
