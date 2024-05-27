@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
               child: CircleAvatar(
                 radius: 25,
                 backgroundImage: AssetImage(
-                    'assets/svgs/jpj1.jpg'), // replace with your image URL
+                    'assets/images/my_picture.jpg'), // replace with your image URL
               ),
             ),
             Column(
@@ -55,9 +55,21 @@ class HomeScreen extends StatelessWidget {
                 heightSpace(30),
                 const UploadAndLogoutButtons(),
                 heightSpace(30),
-                Expanded(
-                    child: DisplayGallery(
-                  model: context.read<HomeCubit>().images,
+                Expanded(child: BlocBuilder<HomeCubit, HomeState>(
+                  //  buildWhen:  ( previous, current) => current is GallerySuccess,
+                  builder: (context, state) {
+                    if (state is GalleryLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    if (state is GallerySuccess) {
+                      return DisplayGallery(
+                        galleryList: state.galleryModel,
+                      );
+                    }
+                    return const Center(child: Text("Something went wrong"));
+                  },
                 )),
               ],
             )

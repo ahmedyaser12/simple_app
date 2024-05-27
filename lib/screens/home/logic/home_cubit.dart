@@ -31,8 +31,7 @@ class HomeCubit extends Cubit<HomeState> {
     var response = await apiService.getGallery();
     if (response.status == Status.SUCCESS) {
       images = response.data!.data!.images!;
-      print("this is the gallery${response.data!.message}");
-      emit(GallerySuccess(response.data!));
+      emit(GallerySuccess(images));
     } else {
       emit(FailureRequest(response.errorMessage!));
     }

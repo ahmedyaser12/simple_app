@@ -8,7 +8,7 @@ class HomeInitial extends HomeState {}
 class GalleryLoading extends HomeState {}
 
 class GallerySuccess extends HomeState {
-  final GalleryModel galleryModel;
+  final List<String> galleryModel;
 
   GallerySuccess(this.galleryModel);
 }
