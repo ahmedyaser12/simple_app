@@ -24,6 +24,7 @@ dependencies:
   get_it: ^7.7.0
   json_annotation: ^4.8.1
   flutter_svg: ^2.0.10+1
+  cached_network_image: ^3.3.1
 dev_dependencies:
   json_serializable: ^6.7.1
   build_runner: ^2.4.9
@@ -44,6 +45,7 @@ flutter:
     - assets/images/background.png
     - assets/images/log in.png
     - assets/images/Vector.png
+    - assets/images/
     - assets/svgs/
 
   # An image asset can refer to one or more resolution-specific "variants", see

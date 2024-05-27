@@ -7,7 +7,6 @@ import 'package:simply_app/core/utils/common_functions.dart';
 import 'package:simply_app/screens/home/UI/widget/uploade_list.dart';
 import 'package:simply_app/screens/home/UI/widget/uploade_logout_buttons.dart';
 import 'package:simply_app/screens/home/logic/home_cubit.dart';
-import 'package:simply_app/services/services_locator.dart';
 
 import '../../../core/utils/assets.dart';
 import '../../../core/utils/styles.dart';
@@ -38,8 +37,8 @@ class HomeScreen extends StatelessWidget {
               right: 19, // example position
               child: CircleAvatar(
                 radius: 25,
-                backgroundImage: NetworkImage(
-                    'https://i.pravatar.cc/300'), // replace with your image URL
+                backgroundImage: AssetImage(
+                    'assets/images/my_picture.jpg'), // replace with your image URL
               ),
             ),
             Column(
@@ -57,16 +56,19 @@ class HomeScreen extends StatelessWidget {
                 const UploadAndLogoutButtons(),
                 heightSpace(30),
                 Expanded(child: BlocBuilder<HomeCubit, HomeState>(
+                  //  buildWhen:  ( previous, current) => current is GallerySuccess,
                   builder: (context, state) {
                     if (state is GalleryLoading) {
-                      return const Center(child: CircularProgressIndicator());
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
                     }
                     if (state is GallerySuccess) {
                       return DisplayGallery(
-                        model: state.galleryModel,
+                        galleryList: state.galleryModel,
                       );
                     }
-                    return Container();
+                    return const Center(child: Text("Something went wrong"));
                   },
                 )),
               ],
