@@ -26,11 +26,20 @@ class _DisplayGalleryState extends State<DisplayGallery>
     _setupAnimations();
   }
 
+  @override
+  void didUpdateWidget(DisplayGallery oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.galleryList.length != widget.galleryList.length) {
+      _setupAnimations();
+    }
+  }
+
   void _setupAnimations() {
     topOfWeekAnimations =
         List<Animation<Offset>>.generate(widget.galleryList.length, (index) {
       return Tween<Offset>(
-        begin: Offset(index % 3 == 0 ? -index.toDouble() + -1 : index.toDouble(), -1),
+        begin: Offset(
+            index % 3 == 0 ? -index.toDouble() + -1 : index.toDouble(), -1),
         end: const Offset(0.0, 0.0),
       ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
     });
@@ -91,5 +100,11 @@ class _DisplayGalleryState extends State<DisplayGallery>
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

@@ -52,8 +52,12 @@ class LoginScreen extends StatelessWidget {
                                 showAlertDialog(context, state.error!);
                               }
                               if (state is LoginSuccess) {
+                                print('Login Success');
                                 showAcceptDialog(context, 'Login Successful');
-                                context.navigateTo(RouteName.HOME);
+                                Future.delayed(
+                                    const Duration(milliseconds: 500), () {
+                                  context.navigateTo(RouteName.HOME);
+                                });
                               }
                             },
                             builder: (context, state) {

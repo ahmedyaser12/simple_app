@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:simply_app/screens/home/data/get_gallery/gallery_model.dart';
 
 import '../../../core/helper/cache_helper.dart';
 import '../../../core/utils/status.dart';
@@ -18,13 +17,7 @@ class HomeCubit extends Cubit<HomeState> {
     CacheHelper().saveData(key: 'login', value: false);
   }
 
-  XFile? uploadImage;
   List<String> images = [];
-
-  void uploadProfilePic(XFile? image) {
-    uploadImage = image;
-    emit(PickImage());
-  }
 
   getGallery() async {
     emit(GalleryLoading());
@@ -37,7 +30,7 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  uploadPicture() async {
+  uploadPicture(XFile uploadImage) async {
     emit(UploadLoading());
     var response = await apiService.uploadPicture(profilePic: uploadImage);
     if (response.status == Status.SUCCESS) {

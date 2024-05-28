@@ -46,8 +46,8 @@ class UploadAndLogoutButtons extends StatelessWidget {
                     )),
                 'Upload')
             .onTap(() async {
-          showBlurredDialog(context)
-              .then((value) => context.read<HomeCubit>().getGallery());
+          await showBlurredDialog(context);
+          context.read<HomeCubit>().getGallery();
         })
       ],
     );
@@ -122,7 +122,9 @@ class BodyContent extends StatelessWidget {
             },
             builder: (context, state) {
               return state is UploadLoading
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const SizedBox(
+                      height: 500,
+                      child: Center(child: CircularProgressIndicator()))
                   : Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       mainAxisSize: MainAxisSize.min,
@@ -147,9 +149,8 @@ class BodyContent extends StatelessWidget {
                         ).onTap(() {
                           ImagePicker()
                               .pickImage(source: ImageSource.gallery)
-                              .then((value) {
-                            context.read<HomeCubit>().uploadProfilePic(value!);
-                            context.read<HomeCubit>().uploadPicture();
+                              .then((value) async {
+                            context.read<HomeCubit>().uploadPicture(value!);
                           });
                         }),
                         heightSpace(30),
@@ -176,9 +177,8 @@ class BodyContent extends StatelessWidget {
                         ).onTap(() {
                           ImagePicker()
                               .pickImage(source: ImageSource.camera)
-                              .then((value) {
-                            context.read<HomeCubit>().uploadProfilePic(value!);
-                            context.read<HomeCubit>().uploadPicture();
+                              .then((value) async {
+                            context.read<HomeCubit>().uploadPicture(value!);
                           });
                         }),
                       ],
